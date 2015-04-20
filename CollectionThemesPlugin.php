@@ -197,12 +197,34 @@ class CollectionThemesPlugin extends Omeka_Plugin_AbstractPlugin
         $controller = $request->getControllerName();
         $action = $request->getActionName();
 
+        // Other records to theme.
+        $other = array('items', 'files', 'exhibits', 'page');
+
         if ($controller == 'collections' && $action == 'show') {
             // When showing a collection, use the ID.
             $id = $request->getParam('id');
-        } elseif ($controller == 'items') {
-            // When dealing with items, the collection ID is a get parameter.
+        } elseif (in_array($controller, $other)) {
+            // For non-collection controllers, the ID can be a get parameter.
             $id = $request->getParam('collection');
+
+            // Or, the collection ID can come from the files or item shown.
+            if (empty($id) && $action == 'show') {
+                // Get item ID.
+                $item_id = $request->getParam('id');
+
+                if ($controller == 'files') {
+                    $file = get_db()->getTable('File')->find($item_id);
+                    $item_id = $file->item_id;
+                }
+
+                // Get item by that ID.
+                $item = get_db()->getTable('Item')->find($item_id);
+
+                if (!empty($item)) {
+                    // Get collection ID from the item.
+                    $id = $item->collection_id;
+                }
+            }
         }
 
         // If no collection ID is available, return null.
