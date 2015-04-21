@@ -9,4 +9,4 @@ Released versions of this plugin are [available for download](https://github.com
 You will need to place the source code within a directory named CollectionThemes in your Omeka plugin directory.
 
 ## Development
-This plugin was developed by the [Bowling Green State University Libraries](http://www.bgsu.edu/library.html). Development is [hosted on GitHub](https://github.com/BGSU-LITS/omeka-plugin-SelectOwner).
+This plugin was developed by the [Bowling Green State University Libraries](http://www.bgsu.edu/library.html). Development is [hosted on GitHub](https://github.com/BGSU-LITS/omeka-plugin-CollectionThemes).
