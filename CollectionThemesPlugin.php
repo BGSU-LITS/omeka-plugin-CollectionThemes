@@ -198,7 +198,7 @@ class CollectionThemesPlugin extends Omeka_Plugin_AbstractPlugin
         $action = $request->getActionName();
 
         // Other records to theme.
-        $other = array('items', 'files', 'exhibits', 'page');
+        $other = array('items', 'files', 'exhibits', 'page', 'results');
 
         if ($controller == 'collections' && $action == 'show') {
             // When showing a collection, use the ID.
