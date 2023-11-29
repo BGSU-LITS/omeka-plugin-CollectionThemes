@@ -62,11 +62,13 @@ class CollectionTheme extends Omeka_Record_AbstractRecord
         }
 
         // If a theme and options for that theme are available, return them.
-        if ($themeName && !empty($this->theme_options)) {
+        if ($themeName && is_string($this->theme_options)) {
             $themeOptionsArray = unserialize($this->theme_options);
 
-            if (!empty($themeOptionsArray[$themeName])) {
-                return $themeOptionsArray[$themeName];
+            if (is_array($themeOptionsArray)) {
+                if (!empty($themeOptionsArray[$themeName])) {
+                    return $themeOptionsArray[$themeName];
+                }
             }
         }
 
